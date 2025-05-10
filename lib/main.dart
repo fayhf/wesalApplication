@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:wesal_app_final/firebase_options.dart';
 import 'package:wesal_app_final/interfaces/homePage.dart';
-import 'package:wesal_app_final/interfaces/signDetectorPage.dart';
 import 'package:wesal_app_final/interfaces/welcomePage.dart';
 
 void main() async {

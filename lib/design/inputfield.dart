@@ -2,89 +2,75 @@ import 'package:flutter/material.dart';
 
 // Custom input field widget
 class inputField extends StatefulWidget {
-  final String placeholder; // Placeholder text for the input field
-  final TextEditingController controller; // Controller for managing input
-  final String? Function(String?)?
-  validator; // Validator function for input validation
-  final bool obscureText; // Whether to obscure text (for passwords)
+  final String placeholder;
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
+  final bool obscureText;
 
   const inputField({
     Key? key,
     required this.placeholder,
     required this.controller,
     this.validator,
-    this.obscureText = false, // Default to false
+    this.obscureText = false,
   }) : super(key: key);
 
   @override
-  State<inputField> createState() => _inputFieldState(); // Create state for this widget
+  State<inputField> createState() => _InputFieldState();
 }
 
-class _inputFieldState extends State<inputField> {
-  late bool _obscure; // State for obscuring text
+class _InputFieldState extends State<inputField> {
+  late bool _obscure;
 
   @override
   void initState() {
     super.initState();
-    _obscure = widget.obscureText; // Initialize obscuring state
+    _obscure = widget.obscureText;
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8.0,
-      ), // Padding for input field
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: TextFormField(
-        controller: widget.controller, // Assign controller
-        obscureText: _obscure, // Set obscuring state
-        textAlign: TextAlign.right, // Right-aligned text for Arabic
-        validator: widget.validator, // Assign validator
+        key: Key(widget.placeholder), // 🔑 makes widget testable
+        controller: widget.controller,
+        obscureText: _obscure,
+        textAlign: TextAlign.right,
+        validator: widget.validator,
         decoration: InputDecoration(
-          labelText: widget.placeholder, // Placeholder text
+          labelText: widget.placeholder,
           labelStyle: const TextStyle(
-            color: Color.fromARGB(255, 242, 241, 243), // Label color
+            color: Color.fromARGB(255, 242, 241, 243),
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30), // Rounded corners
-            borderSide: const BorderSide(
-              color: Color.fromARGB(255, 243, 238, 238), // Border color
-            ),
+            borderRadius: BorderRadius.circular(30),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30), // Rounded corners
+            borderRadius: BorderRadius.circular(30),
             borderSide: const BorderSide(
-              color: Color.fromARGB(255, 243, 238, 238), // Border color
+              color: Color.fromARGB(255, 243, 238, 238),
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30), // Rounded corners
+            borderRadius: BorderRadius.circular(30),
             borderSide: const BorderSide(
-              color: Color.fromARGB(
-                255,
-                119,
-                63,
-                251,
-              ), // Border color when focused
+              color: Color.fromARGB(255, 119, 63, 251),
             ),
           ),
-          suffixIcon:
-              widget
-                      .obscureText // Suffix icon for password visibility toggle
-                  ? IconButton(
-                    icon: Icon(
-                      _obscure
-                          ? Icons.visibility_off
-                          : Icons.visibility, // Show/hide icon
-                      color: const Color.fromARGB(255, 200, 200, 200),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _obscure = !_obscure; // Toggle obscuring state
-                      });
-                    },
-                  )
-                  : null, // No suffix icon if not obscured
+          suffixIcon: widget.obscureText
+              ? IconButton(
+                  icon: Icon(
+                    _obscure ? Icons.visibility_off : Icons.visibility,
+                    color: const Color.fromARGB(255, 200, 200, 200),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _obscure = !_obscure;
+                    });
+                  },
+                )
+              : null,
         ),
       ),
     );
