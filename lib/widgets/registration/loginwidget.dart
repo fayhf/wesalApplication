@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wesal_app_final/interfaces/ForgotPassword.dart';
 import 'package:wesal_app_final/interfaces/homePage.dart';
 import 'package:wesal_app_final/interfaces/signUpPage.dart';
 import 'package:wesal_app_final/design/inputfield.dart';
@@ -122,6 +123,16 @@ class _LoginWidgetState extends State<LoginWidget> {
                     }
                     return null; // Return null if valid
                   },
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ForgotPassword()),
+                    );
+                  },
+                  child: const Text('هل نسيت كلمة السر  ؟'),
                 ),
                 const SizedBox(height: 30), // Space below password field
                 ElevatedButton(
