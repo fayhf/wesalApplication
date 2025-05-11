@@ -225,18 +225,6 @@ class _AccountdetailsState extends State<Accountdetails> {
                       ),
                       const SizedBox(height: 10), // Space below email field
 
-                      inputField(
-                        placeholder:
-                            'كلمة السر الحالية', // Placeholder for current password
-                        controller: _passwordController,
-                        obscureText: true, // Mask password input
-                        validator: (value) {
-                          if (value == null || value.length < 6) {
-                            return 'كلمة السر ضعيفة'; // Validation message
-                          }
-                          return null; // Return null if valid
-                        },
-                      ),
                       TextButton.icon(
                         icon: const Icon(
                           Icons.logout,
